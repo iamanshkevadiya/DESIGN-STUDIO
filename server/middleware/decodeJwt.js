@@ -1,24 +1,20 @@
 const jwt = require('jsonwebtoken');
 
-const decode = async (req, res, next) => {
-    try {
-        let token = req.headers?.authorization?.split(" ")[1];
-        if (token) {
-            try {
-                let data = await jwt.verify(token, "private-key");
-                if (data) {
-                    req.user = data;
-
-                    next();
-                }
-            } catch (error) {
-                res.status(404).json({ error: error });
+const decode = (req, res, next) => {
+    console.log(req.headers.authorization)
+    console.log("Authorization Header:", req.headers.authorization);
+    const token = req.headers?.authorization?.split(" ")[1];
+    console.log(token);
+    if (token) {
+        jwt.verify(token, "private-key", (error, decoded) => {
+            if (error) {
+                return res.status(401).json({ error: "Invalid or expired token" });
             }
-        } else {
-            res.status(404).json({ error: "Invalid token" });
-        }
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+            req.user = decoded;
+            next();
+        });
+    } else {
+        res.status(401).json({ error: "Token not provided" });
     }
 };
 

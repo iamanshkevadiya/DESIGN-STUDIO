@@ -12,18 +12,21 @@ const productApi = {
     }
   },
   post: async (data) => {
+    console.log(data);
+
     try {
       let product = await fetch(`${baseUrl}/products`, {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${getToken()}`,
+          Authorization: `Bearer ${getToken()}`, // Assuming getToken() returns a valid token.
         },
-        body: data,
+        body: data, // Pass FormData directly without setting content-type.
       });
       let res = await product.json();
       return res;
     } catch (error) {
-      console.log(error);
+      console.error("Error posting product:", error);
+      return null; // Return null or an appropriate error object.
     }
   },
   getById: async (id) => {

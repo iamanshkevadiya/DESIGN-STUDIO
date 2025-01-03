@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter);
 app.use("/products", productRouter);
-app.use('/cart', cartRoute);
+app.use("/cart", cartRoute);
 
 
 const PORT = process.env.PORT || 8090;

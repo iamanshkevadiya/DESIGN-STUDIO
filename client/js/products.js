@@ -1,69 +1,33 @@
-let iteams = [
-    {
-        title: "Mathilde Armchair Night",
-        image: "../images/Chair/chair-2.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-    {
-        title: "Mathilde Armchair Day",
-        image: "../images/Chair/chair-3.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-    {
-        title: "Embroidered Armchairs",
-        image: "../images/Chair/chair-4.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-    {
-        title: "Embroidered Cocteau Chairs",
-        image: "../images/Chair/chair-6.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-    {
-        title: "Cléo Chair",
-        image: "../images/Chair/chair-1.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-    {
-        title: "Clélia Chair",
-        image: "../images/Chair/chair-5.jpg",
-        button: `<a href="" class="btn btn-primary">Add to Card</a>`,
-    },
-]
+import productApi from "../api/product.api.js";
+import navbar from "../componets/navbar.js";
 
-iteams.forEach((val, index) => {
-    let card_iteams = document.getElementById("additeams");
-    let div = document.createElement("div");
+document.getElementById("navbar").innerHTML = navbar();
 
-    let title = document.createElement("h5");
-    let img = document.createElement("img");
-    let btn = document.createElement("button");
 
-    div.classList = "card-body";
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const price = document.getElementById("price").value;
+    const img = document.getElementById("img");
+    const formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("price", price);
+    formdata.append("img", img.files[0]);
 
-    title.innerHTML = val.title;
-    title.classList = "card-title";
+    // Debug: Log FormData content
+    for (const [key, value] of formdata.entries()) {
+        console.log(`${key}:`, value);
+    }
 
-    img.src = val.image;
-    img.classList = "card-img-top";
+    // Call API and handle the result
+    const result = await productApi.post(formdata);
+    if (result) {
+        console.log("Product successfully posted:", result);
+        // Add success handling (e.g., update UI or reset form).
+    } else {
+        console.error("Failed to post product.");
+    }
+};
 
-    btn.innerHTML = "Add to Cart";
-    btn.classList = "btn add-to-cart";
-    btn.setAttribute("data-index", index);
-
-    div.append(img);
-    div.append(title);
-    div.append(btn);
-
-    card_iteams.append(div);
-})
-
-document.querySelectorAll(".add-to-cart").forEach(btn => {
-    btn.addEventListener("click", function (event) 
-    {
-        event.preventDefault();
-        let index = this.getAttribute("data-index");
-        localStorage.setItem("cartItem", JSON.stringify(iteams[index]));
-        window.location.href = "buy-card.html";
-    });
-});
+// Attach the event listener to the form
+document.getElementById("add-product").addEventListener("submit", handleSubmit);

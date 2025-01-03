@@ -65,6 +65,16 @@ const getUser = async (req, res) => {
     res.status(200).json(users);
 };
 
+const getUserById = async (req, res) => {
+    try {
+        let { userid } = req.params;
+        let data = await User.findById(userid);
+        res.send(data);
+    } catch (error) {
+        res.send({ message: error });
+    }
+}
+
 const deleteUser = async (req, res) => {
     let { id } = req.params;
     try {
@@ -77,6 +87,16 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const getAdmins = async (req, res) => {
+    try {
+        let data = await User.find({ role: "ADMIN" });
+        console.log(data);
+        res.status(202).json(data);
+    } catch (error) {
+        res.status(404).json({ err: error.message });
+    }
+};
 
 
-module.exports = { Signup, Login, getUser, deleteUser };
+
+module.exports = { Signup, Login, getUser, deleteUser, getAdmins, getUserById };

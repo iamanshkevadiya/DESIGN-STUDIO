@@ -5,7 +5,7 @@ const getProducts = async (req, res) => {
     try {
         let product = await Product.find();
         console.log(product);
-        
+
         res.send(product);
     } catch (error) {
         res.status(500).send(error.message);
@@ -13,12 +13,14 @@ const getProducts = async (req, res) => {
 }
 
 const createProduct = async (req, res) => {
+    
     if (req.file) {
         req.body.img = req.file.path;
     }
     req.body.user = req.user.id;
     try {
         let product = await Product.create(req.body);
+        console.log(product);
         res.status(201).json(product);
     } catch (error) {
         res.status(500).send(error.message);

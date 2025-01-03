@@ -17,11 +17,19 @@ const userApi = {
             let res = await req.json();
             console.log(res);
 
-            Cookies.set("token", res.token, { expires: 3 });
-            // console.log(token);
-            setTimeout(function () {
-                window.location.href = "index.html";
-            }, 500);
+            if (req.status === 400) {
+                alert("User already exists. Please log in.");
+            }
+            else if (req.status === 201) {
+                Cookies.set("token", res.token, { expires: 3 });
+                // console.log(token);
+                setTimeout(function () {
+                    window.location.href = "http://127.0.0.1:5501/client/pages/index.html";
+                }, 50000);
+            }
+            else {
+                alert(res.message || "Signup failed. Please try again.");
+            }
 
         } catch (error) {
             console.log("Failed to sign up", error);
@@ -38,19 +46,19 @@ const userApi = {
             });
             let res = await req.json();
 
-            if(req.ok){
-                
+            if (req.ok) {
+
                 Cookies.set("token", res.token, { expires: 3 });
-                 alert(res.msg)
-       
-               return setTimeout(function () {
-                    window.location.href = "index.html";
+                alert(res.msg)
+
+                return setTimeout(function () {
+                    window.location.href = "http://127.0.0.1:5501/client/pages/index.html";
                 }, 500);
             }
-            else{
-               return alert(res.msg)
-            }           
-           
+            else {
+                return alert(res.msg)
+            }
+
         } catch (error) {
             console.log("Failed to sign up", error);
         }

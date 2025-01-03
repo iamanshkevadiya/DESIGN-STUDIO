@@ -1,3 +1,5 @@
+import getUserData from "../utils/Cookies.js";
+
 let { token } = Cookies.get();
 console.log("token:" + token);
 
@@ -12,12 +14,23 @@ const logout = () => {
 };
 const navbar = () => {
     let tag = ``;
+    let Admintag = ``;
+
     if (decodeToken) {
         tag = `<a class="nav-link" id=logout>Logout</a>`;
     }
     else {
         tag = `<a class="nav-link" href="/client/pages/login.html">Login</a>`;
     }
+
+    if (getUserData().role == "ADMIN") {
+        Admintag = `<a class="nav-link" href="/client/pages/product.html">Add Product</a>`;
+    }
+    else {
+        Admintag = ``;
+    }
+
+
     return `<nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="d-flex justify-content-between header">
@@ -43,6 +56,9 @@ const navbar = () => {
                                 <a class="nav-link" href="contact.html">Contact</a>
                             </li>
                             <li class="nav-item">
+                            ${Admintag}
+                            </li>
+                             <li class="nav-item">
                             ${tag}
                             </li>
                         </ul>
