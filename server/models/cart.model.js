@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 const cartSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.ObjectId, ref: "User", require: true },
+    user: { type: mongoose.Schema.ObjectId, ref: "User" },
     product: [{ type: mongoose.Schema.ObjectId, ref: "Product" }],
     qty: { type: Number, default: 1 }
 });

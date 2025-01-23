@@ -12,7 +12,7 @@ const mapper = (data) => {
         div.classList = "card-body";
 
         let a = document.createElement("a");
-        a.href = `pages/buy-card.html?id=${_id}`;
+        // a.href = `http://127.0.0.1:5501/client/pages/buy-card.html`;
         a.style = ""
 
         let titleT = document.createElement("h3");
@@ -33,19 +33,24 @@ const mapper = (data) => {
         cartButton.classList = "btn btn-primary"
 
         cartButton.addEventListener("click", async () => {
-            let productId = _id;
-            let productItems = await productApi.getProductById(productId);
-            let existingItem = productItems.find((item) => item.product._id === productId);
+            try {
+                let productId = _id;
+                let cartItems = await cartApi.getByUserId(user);
+                let existingItem = cartItems.find((item) => item.product._id === productId);
 
-            if (existingItem) {
-                await productApi.updateQuantity(existingItem._id, existingItem.qty + 1);
-            } else {
-                if (user == user) {
-                    productApi.addToCart({ user, product: productId })
+                if (existingItem) {
+                    await cartApi.updateQuantity(existingItem._id, existingItem.qty + 1);
+                } else {
+                    if (user == user) {
+                        cartApi.addToCart({ user, product: productId })
+                    }
+                    else {
+                        await cartApi.addToCart({ user, product: [{ productId }] });
+                    }
                 }
-                else {
-                    await productApi.addToCart({ user, product: [{ productId }] });
-                }
+            } catch (error) {
+                console.error("Error adding product to cart:", error);
+                alert("Failed to add product to cart. Please try again.");
             }
         });
         a.append(imgT, titleT, priceT);

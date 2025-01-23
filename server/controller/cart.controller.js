@@ -1,7 +1,12 @@
 const Cart = require("../models/cart.model");
+require("dotenv").config();
 
-const getCartByUserId = async (res, req) => {
-    const { userId } = req.user.id;
+const getByUserId = async (req, res) => {
+    console.log(req.user);
+    const userId = req.user.id;
+    console.log(userId);
+
+
     try {
         let cart = await Cart.find({ user: userId }).populate("product");
         console.log("cart", cart);
@@ -12,7 +17,8 @@ const getCartByUserId = async (res, req) => {
     }
 };
 
-const addTocart = async (res, req) => {
+const addTocart = async (req, res) => {
+    console.log(req.body, req.user);
     req.body.user = req.user.id;
 
     const { user, product } = req.body;
@@ -32,7 +38,7 @@ const addTocart = async (res, req) => {
     }
 };
 
-const removeTocart = async (res, req) => {
+const removeTocart = async (req, res) => {
 
     const { cartId } = req.params;
     try {
@@ -43,7 +49,7 @@ const removeTocart = async (res, req) => {
     }
 };
 
-const addQuantity = async (res, req) => {
+const addQuantity = async (req, res) => {
     let { cartId } = req.params;
     try {
         let cart = await Cart.findById(cartId);
@@ -55,7 +61,7 @@ const addQuantity = async (res, req) => {
     }
 };
 
-const removeQuantity = async (res, req) => {
+const removeQuantity = async (req, res) => {
     let { cartId } = req.params;
     try {
         let cart = await Cart.findById(cartId);
@@ -74,7 +80,7 @@ const removeQuantity = async (res, req) => {
 };
 
 module.exports = {
-    getCartByUserId,
+    getByUserId,
     addTocart,
     removeTocart,
     addQuantity,
