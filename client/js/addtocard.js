@@ -10,6 +10,16 @@ const handleQtyicon = (id, opr) => {
     }
     window.location.reload();
 };
+
+const payment = async (amount) => {
+    try {
+        await cartApi.payment(amount);
+    } catch (error) {
+        console.error("Error during payment:", error);
+        alert("Payment failed. Please try again.");
+    }
+};
+
 let totalPrice = 0;
 
 const mapper = (data) => {
@@ -67,14 +77,18 @@ const mapper = (data) => {
 
     let amount = document.createElement("p");
     amount.innerHTML = "Total: ₹" + totalPrice;
+    amount.style  = "font-weight:600; color:black; font-size:18px;"
 
-    // let payBtn = document.createElement("button");
-    // payBtn.innerHTML = "Pay";
-    // payBtn.addEventListener("click", () => payment(totalPrice));
+    let payBtn = document.createElement("button");
+    payBtn.innerHTML = "Pay";
+    payBtn.classList = "btn btn-light border border-2";
+    payBtn.style = "width:100px; margin:0;"
+    payBtn.addEventListener("click", () => payment(totalPrice));
 
-    // let summaryDiv = document.createElement("div");
-    // summaryDiv.append(amount, payBtn);
-    // document.getElementById("cartlist").append(summaryDiv);
+    let summaryDiv = document.createElement("div");
+    summaryDiv.append(amount, payBtn);
+    summaryDiv.classList = "d-block";
+    document.getElementById("cartlist").append(summaryDiv);
 };
 
 const getCartData = async () => {

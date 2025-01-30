@@ -14,7 +14,7 @@ const logout = () => {
 };
 const navbar = () => {
     let tag = ``;
-    let roleLink = ``;
+    let addtag = ``;
 
     if (decodeToken) {
         tag = `<a class="nav-link" id=logout>Logout</a>`;
@@ -23,15 +23,13 @@ const navbar = () => {
         tag = `<a class="nav-link" href="/client/pages/login.html">Login</a>`;
     }
 
-    if (getUserData()?.role === "ADMIN") {
-        roleLink = `<li class="nav-item">
-                        <a class="nav-link" href="/client/pages/product.html">Add Product</a>
-                    </li>`;
-                    console.log(roleLink);
-                    
+    const userData = getUserData();
+
+    if (userData && userData.role == 'ADMIN') {
+        addtag = `<a class="nav-link" href=""></a>`;
     }
     else {
-        roleLink = ``;
+        addtag = `<a class="nav-link" href="/client/pages/product.html">Add Product</a>`;        
     }
 
 
@@ -57,11 +55,13 @@ const navbar = () => {
                                 <a class="nav-link" href="e-shop.html">E-Shop</a>
                             </li>
                             <li class="nav-item">
+                                ${addtag}
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
                             </li>
-                            ${roleLink}
-                             <li class="nav-item">
-                            ${tag}
+                            <li class="nav-item">
+                                ${tag}
                             </li>
                         </ul>
                     </div>

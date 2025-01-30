@@ -3,7 +3,6 @@ import { getToken } from "../utils/Cookies.js";
 const baseUrl = "http://localhost:8090";
 const userApi = {
     signup: async (user) => {
-
         try {
             let req = await fetch(`${baseUrl}/user/signup`, {
                 method: "POST",
