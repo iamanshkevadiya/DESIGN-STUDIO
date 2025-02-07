@@ -22,7 +22,7 @@ const userApi = {
                 Cookies.set("token", res.token, { expires: 3 });
                 // console.log(token);
                 setTimeout(function () {
-                    window.location.href = "http://127.0.0.1:5501/client/pages/index.html";
+                    window.location.href = "index.html";
                 }, 50000);
             }
             else {
@@ -50,7 +50,7 @@ const userApi = {
                 alert(res.msg)
 
                 return setTimeout(function () {
-                    window.location.href = "http://127.0.0.1:5501/client/pages/index.html";
+                    window.location.href = "index.html";
                 }, 500);
             }
             else {

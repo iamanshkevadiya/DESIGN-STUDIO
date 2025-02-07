@@ -36,6 +36,7 @@ const cartApi = {
       console.log(error);
     }
   },
+
   deleteCart: async (productId) => {
     try {
       let cart = await fetch(`${baseUrl}/cart/${productId}`, {
