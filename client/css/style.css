@@ -562,3 +562,261 @@ h2 {
     display: flex;
     flex-wrap: wrap;
 } */
+
+/* Product Form Styling */
+#add-product {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 16px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.1),
+    inset 0 -2px 0 rgba(193, 154, 91, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+#add-product::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #C19A5B, #a88344);
+}
+
+#add-product .form-group {
+  margin-bottom: 2rem;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+#add-product .form-group:focus-within {
+  transform: translateX(5px);
+}
+
+#add-product label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+#add-product label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background-color: #C19A5B;
+  transition: height 0.3s ease;
+}
+
+#add-product .form-group:focus-within label::before {
+  height: 100%;
+}
+
+#add-product input,
+#add-product textarea,
+#add-product select {
+  width: 100%;
+  padding: 1.2rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  color: #495057;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+#add-product input{
+    margin-bottom: 15px;
+}
+
+#add-product input:hover,
+#add-product textarea:hover,
+#add-product select:hover {
+  border-color: #C19A5B;
+  transform: translateY(-1px);
+}
+
+#add-product input:focus,
+#add-product textarea:focus,
+#add-product select:focus {
+  outline: none;
+  border-color: #C19A5B;
+  background-color: #fff;
+  box-shadow: 
+    0 0 0 4px rgba(193, 154, 91, 0.1),
+    inset 0 2px 4px rgba(0, 0, 0, 0.03);
+  transform: translateY(-2px);
+}
+
+#add-product textarea {
+  min-height: 150px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+#add-product button[type="submit"] {
+  background: linear-gradient(135deg, #C19A5B, #a88344);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-top: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+#add-product button[type="submit"]::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+}
+
+#add-product button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 10px 20px rgba(193, 154, 91, 0.2),
+    0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+#add-product button[type="submit"]:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+#add-product button[type="submit"]:active {
+  transform: translateY(-1px);
+}
+
+/* File input custom styling */
+#add-product input[type="file"] {
+  padding: 1rem;
+  cursor: pointer;
+  background: #f8f9fa;
+  border: 2px dashed #C19A5B;
+}
+
+#add-product input[type="file"]::file-selector-button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #C19A5B, #a88344);
+  color: white;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+#add-product input[type="file"]::file-selector-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(193, 154, 91, 0.2);
+}
+
+/* Custom select styling enhancement */
+#add-product select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C19A5B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  padding-right: 3rem;
+}
+
+/* Error message enhancement */
+#add-product .error-message {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loading state */
+#add-product button[type="submit"].loading {
+  position: relative;
+  color: transparent;
+}
+
+#add-product button[type="submit"].loading::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.8s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  #add-product {
+    margin: 2rem;
+    padding: 2rem;
+  }
+  
+  #add-product button[type="submit"] {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #add-product {
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  #add-product .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  #add-product input,
+  #add-product textarea,
+  #add-product select {
+    padding: 0.8rem;
+  }
+}
