@@ -11,14 +11,14 @@ const handleQtyicon = (id, opr) => {
     window.location.reload();
 };
 
-const payment = async (amount) => {
-    try {
-        await cartApi.payment(amount);
-    } catch (error) {
-        console.error("Error during payment:", error);
-        alert("Payment failed. Please try again.");
-    }
-};
+// const payment = async (amount) => {
+//     try {
+//         await cartApi.payment(amount);
+//     } catch (error) {
+//         console.error("Error during payment:", error);
+//         alert("Payment failed. Please try again.");
+//     }
+// };
 
 let totalPrice = 0;
 
@@ -46,7 +46,7 @@ const mapper = (data) => {
                 priceT.style = "font-weight:600; color:black; padding-bottom:10px";
 
                 let imgT = document.createElement("img");
-                imgT.src = `http://localhost:8090/${img}`;
+                imgT.src = `http://localhost:8099/${img}`;
                 imgT.alt = title;
                 imgT.classList = "card-img-top";
 
@@ -85,10 +85,10 @@ const mapper = (data) => {
     payBtn.style = "width:100px; margin:0;"
     payBtn.addEventListener("click", () => payment(totalPrice));
 
-    let summaryDiv = document.createElement("div");
-    summaryDiv.append(amount, payBtn);
-    summaryDiv.classList = "d-block";
-    document.getElementById("cartlist").append(summaryDiv);
+    // let summaryDiv = document.createElement("div");
+    // summaryDiv.append(amount, payBtn);
+    // summaryDiv.classList = "d-block";
+    // document.getElementById("cartlist").append(summaryDiv);
 };
 
 const getCartData = async () => {

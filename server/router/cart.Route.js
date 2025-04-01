@@ -9,6 +9,6 @@ cartRoute.post("/", decode, addTocart);
 cartRoute.delete("/:cartId", decode, removeTocart);
 cartRoute.patch("/add-qty/:cartId", decode, addQuantity);
 cartRoute.patch("/remove-qty/:cartId", decode, removeQuantity);
-cartRoute.post("/payment",checkout);
+// cartRoute.post("/payment",checkout);
 
 module.exports = cartRoute;

@@ -78,10 +78,10 @@ const removeQuantity = async (req, res) => {
     }
 };
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_h6BhrSoCcUOci6",
-    key_secret: process.env.RAZORPAY_KEY_SECRET || "8SOZkHUH7soFstcSMNBsPrYN",
-});
+// const razorpay = new Razorpay({
+//     key_id: process.env.RAZORPAY_KEY_ID || "rzp_test_h6BhrSoCcUOci6",
+//     key_secret: process.env.RAZORPAY_KEY_SECRET || "8SOZkHUH7soFstcSMNBsPrYN",
+// });
 
 const checkout = async (req, res) => {
     const { amount } = req.body;

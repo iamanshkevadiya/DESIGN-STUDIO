@@ -1,6 +1,6 @@
 import { getToken } from "../utils/Cookies.js";
 
-const baseUrl = "http://localhost:8090";
+const baseUrl = "http://localhost:8099";
 const userApi = {
     signup: async (user) => {
         try {
@@ -20,9 +20,9 @@ const userApi = {
             }
             else if (req.status === 201) {
                 Cookies.set("token", res.token, { expires: 3 });
-                // console.log(token);
+                console.log(token);
                 setTimeout(function () {
-                    window.location.href = "index.html";
+                    window.location.href = "/client/index.html";
                 }, 50000);
             }
             else {
@@ -50,7 +50,7 @@ const userApi = {
                 alert(res.msg)
 
                 return setTimeout(function () {
-                    window.location.href = "index.html";
+                    window.location.href = "/client/index.html";
                 }, 500);
             }
             else {

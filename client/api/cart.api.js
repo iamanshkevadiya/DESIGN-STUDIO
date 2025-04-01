@@ -1,5 +1,5 @@
 import { getToken } from "../utils/Cookies.js";
-const baseUrl = "http://localhost:8090";
+const baseUrl = "http://localhost:8099";
 
 const cartApi = {
   getByUserId: async () => {
@@ -80,26 +80,26 @@ const cartApi = {
       console.log(error);
     }
   },
-  payment: async (amount) => {
-    try {
-      let req = await fetch(`${baseUrl}/cart/payment`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ amount: amount }),
-      });
-      let res = await req.json();
-      const options = {
-        key: "rzp_test_h6BhrSoCcUOci6",
-        amount: res.amount,
-      };
-      const rpay = new Razorpay(options);
-      rpay.open();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // payment: async (amount) => {
+  //   try {
+  //     let req = await fetch(`${baseUrl}/cart/payment`, {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({ amount: amount }),
+  //     });
+  //     let res = await req.json();
+  //     const options = {
+  //       key: "rzp_test_h6BhrSoCcUOci6",
+  //       amount: res.amount,
+  //     };
+  //     const rpay = new Razorpay(options);
+  //     rpay.open();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 };
 
 export default cartApi;

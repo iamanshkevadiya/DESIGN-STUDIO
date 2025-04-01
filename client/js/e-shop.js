@@ -24,7 +24,7 @@ const mapper = (data) => {
         priceT.style = "font-weight:600; color:black; padding-bottom:10px";
 
         let imgT = document.createElement("img");
-        imgT.src = `http://localhost:8090/${img}`;
+        imgT.src = `http://localhost:8099/${img}`;
         imgT.alt = title;
         imgT.classList = "card-img-top";
 
