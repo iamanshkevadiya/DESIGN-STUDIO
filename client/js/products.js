@@ -9,6 +9,7 @@ const handleSubmit = async (e) => {
     const title = document.getElementById("title").value;
     const price = document.getElementById("price").value;
     const img = document.getElementById("img");
+    
     const formdata = new FormData();
     formdata.append("title", title);
     formdata.append("price", price);

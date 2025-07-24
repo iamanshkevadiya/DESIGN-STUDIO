@@ -38,7 +38,7 @@ const navbar = () => {
                 <div class="d-flex justify-content-between header">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="logo">
-                            <a class="navbar-brand" href="index.html"><img src="./images/Logo/logo1.png"
+                            <a class="navbar-brand" href="/client/index.html"><img src="/client/images/Logo/logo1.png"
                                     alt="LOGO"></a>
                         </div>
                         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -68,10 +68,10 @@ const navbar = () => {
                     <div class="icon d-flex align-items-center">
                         <ul class=" navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="signup.html"><i class="bi bi-people"></i></a>
+                                <a class="nav-link" href="/client/pages/signup.html"><i class="bi bi-people"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="buy-card.html"><i class="bi bi-bag"></i></a>
+                                <a class="nav-link" href="/client/pages/buy-card.html"><i class="bi bi-bag"></i></a>
                             </li>
                         </ul>
                     </div>

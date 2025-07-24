@@ -27,7 +27,7 @@ const mapper = (data) => {
         imgT.src = `http://localhost:8099/${img}`;
         imgT.alt = title;
         imgT.classList = "card-img-top";
-
+        
         let cartButton = document.createElement("button");
         cartButton.textContent = "Add to Cart";
         cartButton.classList = "btn btn-primary"

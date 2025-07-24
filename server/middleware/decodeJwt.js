@@ -8,7 +8,6 @@ const decode = (req, res, next) => {
             if (error) {
                 return res.status(401).json({ error: "Invalid or expired token" });
             }
-            
             req.user = decoded;
             console.log(req.user);
 
